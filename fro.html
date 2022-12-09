@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FRØ</title>
+  <script>
+    // Replace the text in the element with the class "main"
+    // with the text from the API response
+    async function replaceText() {
+      // The API endpoint that provides information about a Spotify page
+      const apiEndpoint = "https://api.spotify.com/v1/pages/{spotify:artist:3NxAbl230ak1rfTxOuVxLN}";
+
+      // The ID of the Spotify page you want to retrieve information for
+      const pageId = "123456";
+
+      // Send a request to the API endpoint and get the response
+      const response = await fetch(apiEndpoint.replace("{page_id}", pageId));
+
+      // Parse the JSON response and extract the desired information
+      const data = await response.json();
+      const aboutSection = data["about"];
+      const scrapedText = aboutSection["text"];
+
+      // Replace the text in the element with the "main" class with the scraped text
+      const mainElement = document.getElementsByClassName("main")[0];
+      mainElement.innerHTML = scrapedText;
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>FRØ</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="main">
+    <h2>Welcome to our Website! </h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nunc ut
+      aliquam tincidunt, nunc nisl aliquam mauris, eget aliquam nunc nisl sit amet
+      elit. Sed euismod, nunc ut aliquam tincidunt, nunc nisl aliquam mauris, eget
+      aliquam nunc nisl sit amet elit.
+    </p>
+    <img src="/images/COVER.JPG" alt="här e vi" width="auto" height="800px">
+    <a href="https://open.spotify.com/artist/3NxAbl230ak1rfTxOuVxLN?si=GhHEaq-1TGarFLomyCEZTQ">
+      <button>Visit Spotify</button>
+    </a>
+  </div>
+  <footer>
+    <p>Copyright 2020 My Website</p>
+  </footer>
+</body>
+</html>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  h1 {
+    margin: 0;
+    font-style: italic; /* make the title text italic */
+  }
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center; /* center the nav links */
+  }
+  nav li {
+    margin-right: 10px;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold; /* make the nav links bold */
+  }
+  .main {
+    display: flex; /* use flexbox for the main element */
+    flex-direction: column; /* arrange the child elements in a column */
+    align-items: center; /* center the child elements horizontally */
+    align-content: space-around; /* add space between the child elements */
+    padding: 20px;
+    text-align: center;
+  }
+  p {
+    font-size: 1.2em; /* make the text larger */
+    font-family: 'Courier New', monospace; /* use a different font for the main content */
+  }
+  footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* other styles here */
+  button {
+    background-color: #333; /* set the background color of the button */
+    color: #fff; /* set the text color of the button */
+    padding: 10px 20px; /* add padding to the button */
+    border: none; /* remove the border around the button */
+    font-size: 1em; /* set the font size of the button */
+  }
+  button:hover {
+    background-color: #fff; /* set the background color when the button is hovered over */
+    color: #333; /* set the text color when the button is hovered over */
+  }
+</style>
